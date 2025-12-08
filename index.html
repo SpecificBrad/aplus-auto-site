@@ -72,85 +72,8 @@
                 <p class="section-subtitle">Hand-picked vehicles, inspected and ready for the road</p>
             </div>
             
-            <div class="vehicle-grid">
-                <!-- Vehicle Card 1 -->
-                <div class="vehicle-card">
-                    <div class="vehicle-image">
-                        <div class="certified-badge">
-                            <i class="fas fa-check-circle"></i> Certified
-                        </div>
-                        <!-- Placeholder for vehicle image -->
-                        <div style="width: 100%; height: 240px; background: linear-gradient(135deg, #e4e7eb 0%, #cbd5e1 100%); display: flex; align-items: center; justify-content: center; color: #64748b; font-family: var(--font-display); font-size: 1.5rem;">
-                            2017 HONDA CIVIC
-                        </div>
-                    </div>
-                    <div class="vehicle-details">
-                        <h3 class="vehicle-title">2017 Honda Civic</h3>
-                        <div class="vehicle-features">
-                            <span class="feature-tag"><i class="fas fa-tachometer-alt"></i> 177k km</span>
-                            <span class="feature-tag"><i class="fas fa-cog"></i> Automatic</span>
-                            <span class="feature-tag"><i class="fas fa-gas-pump"></i> 4-Cyl</span>
-                        </div>
-                        <div class="vehicle-price-row">
-                            <span class="vehicle-price">$14,995</span>
-                            <a href="inventory.html" class="view-details">
-                                View Details <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vehicle Card 2 -->
-                <div class="vehicle-card">
-                    <div class="vehicle-image">
-                        <div class="certified-badge">
-                            <i class="fas fa-check-circle"></i> Certified
-                        </div>
-                        <div style="width: 100%; height: 240px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); display: flex; align-items: center; justify-content: center; color: #3b82f6; font-family: var(--font-display); font-size: 1.5rem;">
-                            2015 SUBARU IMPREZA
-                        </div>
-                    </div>
-                    <div class="vehicle-details">
-                        <h3 class="vehicle-title">2015 Subaru Impreza</h3>
-                        <div class="vehicle-features">
-                            <span class="feature-tag"><i class="fas fa-tachometer-alt"></i> 133k km</span>
-                            <span class="feature-tag"><i class="fas fa-road"></i> AWD</span>
-                            <span class="feature-tag"><i class="fas fa-snowflake"></i> Heated Seats</span>
-                        </div>
-                        <div class="vehicle-price-row">
-                            <span class="vehicle-price">$16,995</span>
-                            <a href="inventory.html" class="view-details">
-                                View Details <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vehicle Card 3 -->
-                <div class="vehicle-card">
-                    <div class="vehicle-image">
-                        <div class="certified-badge">
-                            <i class="fas fa-check-circle"></i> Certified
-                        </div>
-                        <div style="width: 100%; height: 240px; background: linear-gradient(135deg, #f3f4f6 0%, #d1d5db 100%); display: flex; align-items: center; justify-content: center; color: #4b5563; font-family: var(--font-display); font-size: 1.5rem;">
-                            2012 SUBARU IMPREZA
-                        </div>
-                    </div>
-                    <div class="vehicle-details">
-                        <h3 class="vehicle-title">2012 Subaru Impreza</h3>
-                        <div class="vehicle-features">
-                            <span class="feature-tag"><i class="fas fa-tachometer-alt"></i> 89k km</span>
-                            <span class="feature-tag"><i class="fas fa-road"></i> AWD</span>
-                            <span class="feature-tag"><i class="fas fa-star"></i> Low KM</span>
-                        </div>
-                        <div class="vehicle-price-row">
-                            <span class="vehicle-price">$12,995</span>
-                            <a href="inventory.html" class="view-details">
-                                View Details <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="vehicle-grid" id="featuredVehicles">
+                <!-- Featured vehicles will be loaded dynamically from vehicle-data.js -->
             </div>
             
             <div style="text-align: center; margin-top: 3rem;">
@@ -377,5 +300,48 @@
 
     <!-- JavaScript for interactions -->
     <script src="js/main.js"></script>
+    <script src="js/vehicle-data.js"></script>
+    <script>
+        // Load featured vehicles on homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            const featuredGrid = document.getElementById('featuredVehicles');
+            if (featuredGrid && typeof vehicleInventory !== 'undefined') {
+                // Show first 3 vehicles as featured
+                const featuredVehicles = vehicleInventory.slice(0, 3);
+
+                featuredVehicles.forEach(vehicle => {
+                    const card = document.createElement('div');
+                    card.className = 'vehicle-card';
+
+                    card.innerHTML = `
+                        <div class="vehicle-image">
+                            ${vehicle.sale ? '<div class="sale-badge" style="position: absolute; top: 1rem; left: 1rem; background-color: #dc2626; color: white; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; z-index: 10;">SALE</div>' : ''}
+                            ${vehicle.certified ? '<div class="certified-badge"><i class="fas fa-check-circle"></i> Certified</div>' : ''}
+                            <img src="${vehicle.imageUrl}"
+                                 alt="${vehicle.year} ${vehicle.make} ${vehicle.model}"
+                                 style="width: 100%; height: 240px; object-fit: cover;"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=\\'width: 100%; height: 240px; background: linear-gradient(135deg, #e4e7eb 0%, #cbd5e1 100%); display: flex; align-items: center; justify-content: center; color: #64748b; font-family: var(--font-display); font-size: 1.5rem;\\'>${vehicle.year} ${vehicle.make.toUpperCase()} ${vehicle.model.toUpperCase()}</div>';">
+                        </div>
+                        <div class="vehicle-details">
+                            <h3 class="vehicle-title">${vehicle.year} ${vehicle.make} ${vehicle.model}</h3>
+                            <div class="vehicle-features">
+                                ${vehicle.mileage !== 'N/A' ? `<span class="feature-tag"><i class="fas fa-tachometer-alt"></i> ${vehicle.mileage} km</span>` : ''}
+                                ${vehicle.drivetrain ? `<span class="feature-tag"><i class="fas fa-road"></i> ${vehicle.drivetrain}</span>` : ''}
+                                <span class="feature-tag"><i class="fas fa-cog"></i> ${vehicle.transmission}</span>
+                            </div>
+                            <div class="vehicle-price-row">
+                                <span class="vehicle-price">$${vehicle.price.toLocaleString()}</span>
+                                <a href="inventory.html" class="view-details">
+                                    View Details <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    featuredGrid.appendChild(card);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
