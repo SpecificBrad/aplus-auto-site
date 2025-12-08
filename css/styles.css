@@ -245,6 +245,7 @@ img {
     font-size: 3.5rem;
     margin-bottom: var(--spacing-md);
     line-height: 1.1;
+    color: var(--color-white);
 }
 
 .accent-text {
@@ -262,6 +263,16 @@ img {
     display: flex;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+}
+
+.hero .btn-secondary {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.hero .btn-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
 }
 
 /* SECTION STYLES */
