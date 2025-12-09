@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+ Auto Centre - Admin Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --color-primary: #1a2332;
+            --color-accent: #ff6a3a;
+            --color-white: #ffffff;
+            --color-background: #f8f9fa;
+            --color-border: #e1e4e8;
+            --color-text: #333333;
+            --color-gray: #666666;
+            --color-success: #28a745;
+            --color-danger: #dc3545;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Work Sans', sans-serif;
+            --border-radius: 8px;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2d3e50 100%);
+            color: var(--color-white);
+            padding: 1.5rem 0;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .admin-header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-header p {
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-gray);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--color-accent);
+        }
+
+        .tab-button.active {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-section {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-section h2 {
+            font-family: var(--font-display);
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: 1px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .form-group label .required {
+            color: var(--color-danger);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="file"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .word-count {
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--color-gray);
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .image-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .image-upload-slot {
+            position: relative;
+            aspect-ratio: 4/3;
+            border: 2px dashed var(--color-border);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            background: var(--color-background);
+        }
+
+        .image-upload-slot:hover {
+            border-color: var(--color-accent);
+            background: #fff5f2;
+        }
+
+        .image-upload-slot input {
+            display: none;
+        }
+
+        .image-upload-slot .placeholder {
+            text-align: center;
+            color: var(--color-gray);
+        }
+
+        .image-upload-slot .placeholder i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .image-upload-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-upload-slot .remove-image {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--color-danger);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .image-upload-slot:hover .remove-image {
+            display: flex;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ff8c5a 100%);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 106, 58, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-secondary:hover {
+            background: #2d3e50;
+        }
+
+        .btn-success {
+            background: var(--color-success);
+            color: var(--color-white);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        .vehicle-list {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .vehicle-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+            transition: background 0.3s ease;
+        }
+
+        .vehicle-item:hover {
+            background: var(--color-background);
+        }
+
+        .vehicle-item:last-child {
+            border-bottom: none;
+        }
+
+        .vehicle-item img {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+
+        .vehicle-info {
+            flex: 1;
+        }
+
+        .vehicle-info h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .vehicle-info p {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+        }
+
+        .vehicle-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .export-section {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .export-card {
+            border: 2px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .export-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .export-card i {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .export-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .export-card p {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <h1>A+ AUTO CENTRE</h1>
+            <p>Admin Portal - Vehicle Management</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-danger" id="errorAlert"></div>
+
+        <div class="admin-tabs">
+            <button class="tab-button active" data-tab="add-vehicle">Add Vehicle</button>
+            <button class="tab-button" data-tab="manage-vehicles">Manage Vehicles</button>
+            <button class="tab-button" data-tab="export">Export Tools</button>
+        </div>
+
+        <!-- ADD VEHICLE TAB -->
+        <div id="add-vehicle" class="tab-content active">
+            <form id="vehicleForm">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h2><i class="fas fa-car"></i> Basic Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Year <span class="required">*</span></label>
+                            <input type="number" id="year" min="1990" max="2030" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Make <span class="required">*</span></label>
+                            <input type="text" id="make" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Model <span class="required">*</span></label>
+                            <input type="text" id="model" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Price <span class="required">*</span></label>
+                            <input type="number" id="price" min="0" step="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Price Type <span class="required">*</span></label>
+                            <select id="priceType" required>
+                                <option value="firm">Firm</option>
+                                <option value="obo">OBO (Or Best Offer)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Status <span class="required">*</span></label>
+                            <select id="status" required>
+                                <option value="available">Available</option>
+                                <option value="pending">Pending</option>
+                                <option value="sold">Sold</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle Details -->
+                <div class="form-section">
+                    <h2><i class="fas fa-info-circle"></i> Vehicle Details</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Mileage</label>
+                            <input type="text" id="mileage" placeholder="e.g., 135,000 or Low">
+                        </div>
+                        <div class="form-group">
+                            <label>VIN</label>
+                            <input type="text" id="vin" placeholder="Vehicle Identification Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Transmission <span class="required">*</span></label>
+                            <select id="transmission" required>
+                                <option value="">Select...</option>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                                <option value="CVT">CVT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Fuel Type</label>
+                            <select id="fuelType">
+                                <option value="Gasoline">Gasoline</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Electric">Electric</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Engine</label>
+                            <select id="engine">
+                                <option value="">Select...</option>
+                                <option value="4-Cylinder">4-Cylinder</option>
+                                <option value="V6">V6</option>
+                                <option value="V8">V8</option>
+                                <option value="Turbo 4-Cylinder">Turbo 4-Cylinder</option>
+                                <option value="Electric Motor">Electric Motor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Body Type</label>
+                            <select id="bodyType">
+                                <option value="">Select...</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Truck">Truck</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Coupe">Coupe</option>
+                                <option value="Van">Van</option>
+                                <option value="Wagon">Wagon</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features & Options -->
+                <div class="form-section">
+                    <h2><i class="fas fa-check-square"></i> Features & Options</h2>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="certified" name="features">
+                            <label for="certified">Certified</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="lowMileage" name="features">
+                            <label for="lowMileage">Low Mileage</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="awd" name="features">
+                            <label for="awd">AWD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fwd" name="features">
+                            <label for="fwd">FWD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rwd" name="features">
+                            <label for="rwd">RWD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="fourWD" name="features">
+                            <label for="fourWD">4WD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="heatedSeats" name="features">
+                            <label for="heatedSeats">Heated Seats</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="leatherSeats" name="features">
+                            <label for="leatherSeats">Leather Seats</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sunroof" name="features">
+                            <label for="sunroof">Sunroof</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="backupCamera" name="features">
+                            <label for="backupCamera">Backup Camera</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="navigation" name="features">
+                            <label for="navigation">Navigation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="bluetooth" name="features">
+                            <label for="bluetooth">Bluetooth</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cruiseControl" name="features">
+                            <label for="cruiseControl">Cruise Control</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="remoteStart" name="features">
+                            <label for="remoteStart">Remote Start</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="winterTires" name="features">
+                            <label for="winterTires">Winter Tires Included</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="saleBadge" name="features">
+                            <label for="saleBadge">SALE Badge</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-section">
+                    <h2><i class="fas fa-align-left"></i> Description</h2>
+                    <div class="form-group full-width">
+                        <label>Vehicle Description (Approx. 100 words)</label>
+                        <textarea id="description" rows="6" maxlength="1000"></textarea>
+                        <div class="word-count"><span id="wordCount">0</span> words</div>
+                    </div>
+                </div>
+
+                <!-- Images -->
+                <div class="form-section">
+                    <h2><i class="fas fa-images"></i> Images (Up to 8)</h2>
+                    <div class="image-upload-grid" id="imageUploads">
+                        <!-- Image slots will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Submit Buttons -->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Vehicle
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                        <i class="fas fa-redo"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- MANAGE VEHICLES TAB -->
+        <div id="manage-vehicles" class="tab-content">
+            <div class="form-section">
+                <h2><i class="fas fa-list"></i> Current Inventory</h2>
+                <div class="vehicle-list" id="vehicleList">
+                    <!-- Vehicles will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPORT TAB -->
+        <div id="export" class="tab-content">
+            <div class="export-section">
+                <h2><i class="fas fa-download"></i> Export Options</h2>
+                <p style="color: var(--color-gray); margin-bottom: var(--spacing-lg);">
+                    Export your inventory data in various formats for different platforms
+                </p>
+                <div class="export-options">
+                    <div class="export-card">
+                        <i class="fas fa-file-code"></i>
+                        <h3>Website Data</h3>
+                        <p>Download vehicle-data.js for your website</p>
+                        <button class="btn btn-primary btn-small" onclick="exportWebsiteData()">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                    <div class="export-card">
+                        <i class="fab fa-facebook"></i>
+                        <h3>Facebook Marketplace</h3>
+                        <p>Generate formatted listings for Facebook</p>
+                        <button class="btn btn-primary btn-small" onclick="exportFacebook()">
+                            <i class="fas fa-copy"></i> Generate
+                        </button>
+                    </div>
+                    <div class="export-card">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Kijiji Format</h3>
+                        <p>Export listings formatted for Kijiji</p>
+                        <button class="btn btn-primary btn-small" onclick="exportKijiji()">
+                            <i class="fas fa-copy"></i> Generate
+                        </button>
+                    </div>
+                    <div class="export-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>NL Classifieds</h3>
+                        <p>Format for NL Classifieds posting</p>
+                        <button class="btn btn-primary btn-small" onclick="exportNLClassifieds()">
+                            <i class="fas fa-copy"></i> Generate
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
