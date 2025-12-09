@@ -28,3 +28,8 @@ images/.temp/
 # Backup files
 *.bak
 *backup*
+
+# Backend database and uploads
+backend/vehicles.db
+backend/uploads/*
+!backend/uploads/.gitkeep
