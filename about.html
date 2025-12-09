@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about A+ Auto Centre - Family owned automotive specialists serving St. John's since 2007 with honest, cost-effective sales and service.">
+    <title>About Us | A+ Auto Centre | St. John's, NL</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* About page specific styles */
+        .about-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2d3e50 100%);
+            color: var(--color-white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            background: var(--color-white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .about-content h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 2rem;
+        }
+
+        .about-content h3 {
+            color: var(--color-accent);
+            margin-top: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .value-card {
+            background: var(--color-background);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 2px solid var(--color-accent);
+        }
+
+        .value-card i {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .value-card h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+
+        .value-card p {
+            color: var(--color-gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ff8c5a 100%);
+            color: var(--color-white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: var(--color-white);
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                A<span class="logo-plus">+</span> AUTO CENTRE
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="inventory.html" class="nav-link">Inventory</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <a href="tel:7097221315" class="phone-cta">
+                <i class="fas fa-phone"></i> (709) 722-1315
+            </a>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ABOUT HERO -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About <span class="accent-text">A+ Auto Centre</span></h1>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                Family owned and operated since 2007, serving St. John's with honest automotive care
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN ABOUT CONTENT -->
+    <section class="section">
+        <div class="container">
+            <div class="about-content">
+                <h2>No Smoke & Mirrors. Just Honest Work.</h2>
+                <p>
+                    At A+ Auto Centre, we believe in straightforward, honest automotive service. Since 2007,
+                    we've been serving the St. John's community with cost-effective, no-nonsense sales and service.
+                    We're not here to sell you things you don't need – we're here to keep you safely on the road.
+                </p>
+                <p>
+                    As a family-owned business, we treat every customer like family. When you bring your vehicle
+                    to us, you're not just another number. You're working with professional automotive specialists
+                    who genuinely care about your safety and satisfaction.
+                </p>
+
+                <h3>Our Story</h3>
+                <p>
+                    Founded in 2007, A+ Auto Centre was built on a simple principle: provide quality automotive
+                    service at fair prices, without the typical dealership markup and pressure tactics. Over the years,
+                    we've helped thousands of St. John's residents with everything from routine maintenance to
+                    finding their next reliable vehicle.
+                </p>
+                <p>
+                    Located conveniently near Airport Heights at 77 Major's Path, we've become a trusted name in
+                    the community for both pre-owned vehicle sales and expert auto repair services.
+                </p>
+
+                <h3>What Sets Us Apart</h3>
+                <p>
+                    <strong>Inspected & Certified Vehicles:</strong> Every vehicle we sell goes through a thorough
+                    inspection. We also offer As-Is options for budget-conscious buyers. Every sale includes a
+                    fresh oil change and full detail.
+                </p>
+                <p>
+                    <strong>Professional Service:</strong> Our technicians are experienced automotive specialists
+                    who use only brand name parts. We don't cut corners – we do the job right the first time.
+                </p>
+                <p>
+                    <strong>Transparent Pricing:</strong> No hidden fees. No surprise charges. We provide clear
+                    quotes and explain exactly what work needs to be done and why.
+                </p>
+                <p>
+                    <strong>Fast Turnaround:</strong> We understand you need your vehicle. We work efficiently
+                    without sacrificing quality to get you back on the road as quickly as possible.
+                </p>
+            </div>
+
+            <!-- VALUES SECTION -->
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Honesty</h4>
+                    <p>We tell you what you need to know, not what will make us the most money.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-award"></i>
+                    <h4>Quality</h4>
+                    <p>Brand name parts and expert workmanship on every job, every time.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>Fair Pricing</h4>
+                    <p>Cost-effective service without compromising on quality or safety.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Community</h4>
+                    <p>Proud to be part of the St. John's community for over 18 years.</p>
+                </div>
+            </div>
+
+            <!-- HIGHLIGHT BOX -->
+            <div class="highlight-box">
+                <h3>18+ Years of Trusted Service</h3>
+                <p>
+                    Over 1,000 vehicles sold • Thousands of satisfied customers •
+                    Family owned & operated • Serving St. John's since 2007
+                </p>
+            </div>
+
+            <!-- CTA SECTION -->
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">
+                    Ready to Experience the A+ Difference?
+                </h3>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="inventory.html" class="btn btn-primary">View Our Inventory</a>
+                    <a href="services.html" class="btn btn-secondary">Our Services</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3>A+ Auto Centre</h3>
+                <p>
+                    Professional automotive specialists serving St. John's since 2007.
+                    Cost effective, no nonsense sales and service.
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>No smoke & mirrors.<br>Just honest work.</strong>
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="inventory.html">View Inventory</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> (709) 722-1315</p>
+                <p><i class="fas fa-map-marker-alt"></i> 77 Major's Path<br>
+                   St. John's, NL A1A 4Z9</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 8AM - 5PM</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 A+ Auto Centre. All rights reserved. | Family owned since 2007</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>
