@@ -34,6 +34,11 @@ backend/vehicles.db
 backend/uploads/*
 !backend/uploads/.gitkeep
 
+# PHP API configuration and uploads
+api/config/database.php
+uploads/*
+!uploads/.gitkeep
+
 # Deployment build folders
 hostinger-deploy/
 

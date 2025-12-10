@@ -1,7 +1,11 @@
 <?php
 /**
- * Database Configuration
+ * Database Configuration EXAMPLE
  * A+ Auto Centre - Vehicle Inventory API
+ *
+ * INSTRUCTIONS:
+ * 1. Copy this file to database.php
+ * 2. Update the password with your actual MySQL password
  */
 
 header("Access-Control-Allow-Origin: *");
@@ -20,7 +24,7 @@ class Database {
     private $host = "localhost";
     private $db_name = "u948234398_inventory";
     private $username = "u948234398_admin";
-    private $password = "Dorfdarb77!!"; // Database password
+    private $password = "YOUR_PASSWORD_HERE"; // Replace with actual password
     public $conn;
 
     // Get database connection
