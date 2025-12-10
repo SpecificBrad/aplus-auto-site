@@ -36,3 +36,6 @@ backend/uploads/*
 
 # Deployment build folders
 hostinger-deploy/
+
+# MCP configuration (contains API tokens)
+.mcp.json
