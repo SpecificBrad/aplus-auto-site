@@ -33,3 +33,9 @@ images/.temp/
 backend/vehicles.db
 backend/uploads/*
 !backend/uploads/.gitkeep
+
+# Deployment build folders
+hostinger-deploy/
+
+# MCP configuration (contains API tokens)
+.mcp.json
