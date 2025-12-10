@@ -203,6 +203,13 @@ function loadVehiclesFromStorage() {
     const stored = localStorage.getItem('aplusAutoVehicles');
     if (stored) {
         vehicles = JSON.parse(stored);
+    } else {
+        // Pre-load demo data from vehicle-data.js if localStorage is empty
+        if (typeof vehicleInventory !== 'undefined' && vehicleInventory.length > 0) {
+            vehicles = vehicleInventory.map(v => ({...v})); // Clone the data
+            saveVehiclesToStorage();
+            console.log('Demo data loaded:', vehicles.length, 'vehicles');
+        }
     }
 }
 
